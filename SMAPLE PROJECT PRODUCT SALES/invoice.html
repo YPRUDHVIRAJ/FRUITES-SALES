@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Invoice</title>
+<meta name="description" content="Get top-notch web development services tailored to your business needs. Our expert team delivers quality websites that drive results. Contact us today!">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    /* Add your styles here */
+    .invoice-wrapper { min-height: 100vh; background-color: rgba(0, 0, 0, 0.1); padding-top: 20px; padding-bottom: 20px; }
+    .invoice { max-width: 850px; margin: auto; background-color: #fff; padding: 70px; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 5px; }
+    .invoice-head { display: flex; justify-content: space-between; }
+    .invoice-head img { width: 130px; }
+    .invoice-head h3 { font-weight: 500; font-size: 27px; color: #0c2f54; }
+    .invoice-body { border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; overflow: hidden; }
+    .invoice-body table { width: 100%; border-collapse: collapse; }
+    .invoice-body th, .invoice-body td { padding: 12px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    .invoice-footer { text-align: center; margin-top: 20px; }
+    .invoice-btns { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+    .invoice-btn { padding: 10px 20px; border: 1px solid rgba(0, 0, 0, 0.1); cursor: pointer; background-color: #4CAF50; color: #fff; }
+</style>
+</head>
+<body>
+<div class="invoice-wrapper">
+    <div class="invoice">
+        <div class="invoice-head">
+            <div>
+                <img src="C:/Users/Admin/Desktop/logo.png" alt="Company Logo">
+                <h3>Invoice</h3>
+            </div>
+            <div>
+                <p><strong>Date:</strong> <span id="invoice-date"></span></p>
+            </div>
+        </div>
+        <div class="invoice-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Rate</th>
+                        <th>Qty</th>
+                        <th class="text-end">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="invoice-items">
+                </tbody>
+            </table>
+            <div class="invoice-total">
+                <p><strong>Total:</strong> Rs <span id="invoice-total">0</span></p>
+            </div>
+        </div>
+        <div class="invoice-footer">
+            <p>Thank you for your business!</p>
+            <div class="invoice-btns">
+                <button class="invoice-btn" onclick="printInvoice()">Print</button>
+                <button class="invoice-btn" onclick="downloadInvoice()">Download</button>
+                <button class="invoice-btn" onclick="goBack()">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const invoiceDate = new Date().toLocaleDateString();
+        document.getElementById('invoice-date').textContent = invoiceDate;
+
+        const invoiceItems = document.getElementById('invoice-items');
+        let total = 0;
+
+        cart.forEach(item => {
+            const amount = item.cost * item.quantity;
+            total += amount;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>Rs ${item.cost}</td>
+                <td>${item.quantity}</td>
+                <td class="text-end">Rs ${amount}</td>
+            `;
+            invoiceItems.appendChild(row);
+        });
+
+        document.getElementById('invoice-total').textContent = total;
+    });
+
+    function printInvoice() {
+        window.print();
+    }
+
+    function downloadInvoice() {
+        const invoiceElement = document.querySelector('.invoice');
+        const opt = {
+            margin: 1,
+            filename: 'invoice.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        html2pdf().from(invoiceElement).set(opt).save();
+    }
+
+    function goBack() {
+        window.location.href = 'index.html';
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2

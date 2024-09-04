@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .payment-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .payment-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .payment-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .payment-container input[type="text"],
+        .payment-container input[type="email"],
+        .payment-container input[type="number"],
+        .payment-container select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .payment-container button {
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .payment-container button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Complete Your Purchase</h2>
+        <form id="paymentForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            
+            <label for="address">Billing Address</label>
+            <input type="text" id="address" name="address" placeholder="Enter your billing address" required>
+            
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="Enter your city" required>
+            
+            <label for="zipcode">ZIP Code</label>
+            <input type="number" id="zipcode" name="zipcode" placeholder="Enter your ZIP code" required>
+            
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+                <option value="creditCard">Credit Card</option>
+                <option value="debitCard">Debit Card</option>
+                <option value="paypal">PayPal</option>
+            </select>
+            
+            <div id="cardDetails" style="display: none;">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter your card number">
+                
+                <label for="expiryDate">Expiry Date</label>
+                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY">
+                
+                <label for="cvv">CVV</label>
+                <input type="number" id="cvv" name="cvv" placeholder="Enter your card's CVV">
+            </div>
+            
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        const paymentMethodSelect = document.getElementById('paymentMethod');
+        const cardDetailsDiv = document.getElementById('cardDetails');
+
+        paymentMethodSelect.addEventListener('change', function() {
+            if (this.value === 'creditCard' || this.value === 'debitCard') {
+                cardDetailsDiv.style.display = 'block';
+            } else {
+                cardDetailsDiv.style.display = 'none';
+            }
+        });
+
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Payment successful!');
+            // Here you can add functionality to process the payment.
+        });
+    </script>
+</body>
+</html>

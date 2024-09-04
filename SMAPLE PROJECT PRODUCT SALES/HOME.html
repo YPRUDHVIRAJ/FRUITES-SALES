@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center; /* Center the content horizontally */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        .title {
+            font-size: 36px; /* Increased size for better visibility */
+            font-weight: bold;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+            padding: 20px;
+            text-shadow: 
+                0 0 5px #fff, /* White glow */
+                0 0 10px #fff, 
+                0 0 15px #ff00ff, /* Pink glow */
+                0 0 20px #ff00ff, 
+                0 0 25px #ff00ff, 
+                0 0 30px #ff00ff, 
+                0 0 35px #ff00ff; /* Intense pink glow */
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 5px #fff, 
+                    0 0 10px #fff, 
+                    0 0 15px #ff00ff, 
+                    0 0 20px #ff00ff, 
+                    0 0 25px #ff00ff, 
+                    0 0 30px #ff00ff, 
+                    0 0 35px #ff00ff;
+            }
+            to {
+                text-shadow: 
+                    0 0 10px #fff, 
+                    0 0 20px #fff, 
+                    0 0 30px #ff00ff, 
+                    0 0 40px #ff00ff, 
+                    0 0 50px #ff00ff, 
+                    0 0 60px #ff00ff, 
+                    0 0 70px #ff00ff;
+            }
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .search-container {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-container input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-container button {
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #218838;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .image-container img {
+            width: 27.51cm;
+            height: 10.15cm;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .buttons-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .add-product {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .view-cart {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .items-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+
+        .item-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-buttons button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .item-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .item-quantity {
+            width: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 0 10px;
+        }
+
+        .total-cost {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        .buy-now {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #ff5722;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .buy-now:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="https://www.creativefabrica.com/wp-content/uploads/2019/02/Online-shop-shopping-shop-logo-by-DEEMKA-STUDIO-3.jpg" alt="Shop Logo">
+        </div>
+        <div class="title">Welcome to DEADEND</div>
+        <div class="nav">
+            <a href="#">Profile</a>
+        </div>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" placeholder="Search...">
+        <button type="button">Search</button>
+    </div>
+    
+    <div class="image-container">
+        <img src="https://image.freepik.com/free-vector/organic-fruit-vegetable-logo_124393-52.jpg" alt="Featured Image">
+    </div>
+
+    <div class="buttons-container">
+        <button class="add-product">Add Product</button>
+        <button class="view-cart">View Cart</button>
+    </div>
+
+    <div class="items-container">
+        <!-- Apple Item -->
+        <div class="item">
+            <img src="https://purepng.com/public/uploads/large/purepng.com-applefoodsweettastyhealthyfruitapple-9815246780899e3jo.png" alt="Apple">
+            <div class="item-details">
+                <div>Apple</div>
+                <div>Cost: Rs 25</div>
+            </div>
+            <div class="item-buttons">
+                <button onclick="updateQuantity(this, -1)">-</button>
+                <input type="text" value="0" class="item-quantity" readonly>
+                <button onclick="updateQuantity(this, 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Banana Item -->
+        <div class="item">
+            <img src="https://purepng.com/public/uploads/medium/purepng.com-bananafruitsyellowfruit-981524754290imrx9.png" alt="Banana">
+            <div class="item-details">
+                <div>Banana</div>
+                <div>Cost: Rs 7</div>
+            </div>
+            <div class="item-buttons">
+                <button onclick="updateQuantity(this, -1)">-</button>
+                <input type="text" value="0" class="item-quantity" readonly>
+                <button onclick="updateQuantity(this, 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Pineapple Item -->
+        <div class="item">
+            <img src="https://www.pngarts.com/files/3/Sliced-Pineapple-PNG-Photo.png" alt="Pineapple">
+            <div class="item-details">
+                <div>Pineapple</div>
+                <div>Cost: Rs 10</div>
+            </div>
+            <div class="item-buttons">
+                <button onclick="updateQuantity(this, -1)">-</button>
+                <input type="text" value="0" class="item-quantity" readonly>
+                <button onclick="updateQuantity(this, 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Watermelon Item -->
+        <div class="item">
+            <img src="https://static.libertyprim.com/files/familles/pasteque-large.jpg?1574632980" alt="Watermelon">
+            <div class="item-details">
+                <div>Watermelon</div>
+                <div>Cost: Rs 18</div>
+            </div>
+            <div class="item-buttons">
+                <button onclick="updateQuantity(this, -1)">-</button>
+                <input type="text" value="0" class="item-quantity" readonly>
+                <button onclick="updateQuantity(this, 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Dragon Fruit Item -->
+        <div class="item">
+            <img src="https://www.vhv.rs/dpng/d/431-4316093_dragon-fruit-hd-png-download.png" alt="Dragon Fruit">
+            <div class="item-details">
+                <div>Dragon Fruit</div>
+                <div>Cost: Rs 34</div>
+            </div>
+            <div class="item-buttons">
+                <button onclick="updateQuantity(this, -1)">-</button>
+                <input type="text" value="0" class="item-quantity" readonly>
+                <button onclick="updateQuantity(this, 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Grape Item -->
+        <div class="item">
+            <img src="https://www.pngmart.com/files/5/Grapes-PNG-Photos.png" alt="Grape">
+            <div class="item-details">
+                <div>Grape</div>
+                <div>Cost: Rs 12</div>
+            </div>
+            <div class="item-buttons">
+                <button onclick="updateQuantity(this, -1)">-</button>
+                <input type="text" value="0" class="item-quantity" readonly>
+                <button onclick="updateQuantity(this, 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Orange Item -->
+        <div class="item">
+            <img src="https://www.pngmart.com/files/15/Orange-Transparent-Isolated-PNG.png" alt="Orange">
+            <div class="item-details">
+                <div>Orange</div>
+                <div>Cost: Rs 10</div>
+            </div>
+            <div class="item-buttons">
+                <button onclick="updateQuantity(this, -1)">-</button>
+                <input type="text" value="0" class="item-quantity" readonly>
+                <button onclick="updateQuantity(this, 1)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="total-cost">Total Cost: Rs 0</div>
+    <button class="buy-now" onclick="redirectToPaymentPage()">Buy Now</button>
+
+    <script>
+        function updateQuantity(button, change) {
+            const quantityInput = button.parentNode.querySelector('.item-quantity');
+            let currentQuantity = parseInt(quantityInput.value);
+            let newQuantity = currentQuantity + change;
+            if (newQuantity < 0) newQuantity = 0;
+            quantityInput.value = newQuantity;
+            updateTotalCost();
+        }
+
+        function updateTotalCost() {
+            let total = 0;
+            document.querySelectorAll('.item').forEach(item => {
+                const quantity = parseInt(item.querySelector('.item-quantity').value);
+                const cost = parseInt(item.querySelector('.item-details div:nth-child(2)').innerText.replace('Cost: Rs ', ''));
+                total += quantity * cost;
+            });
+            document.querySelector('.total-cost').innerText = 'Total Cost: Rs ' + total;
+            document.querySelector('.buy-now').disabled = total === 0;
+        }
+
+        function redirectToPaymentPage() {
+            if (parseInt(document.querySelector('.total-cost').innerText.replace('Total Cost: Rs ', '')) > 0) {
+                window.location.href = 'paymentpage.html'; // Replace with your payment page URL
+            }
+        }
+    </script>
+</body>
+</html>

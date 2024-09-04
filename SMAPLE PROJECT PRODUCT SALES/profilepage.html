@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        .logo {
+            flex: 1;
+        }
+        .logo img {
+            max-width: 120px;
+        }
+        .profile {
+            flex: 3;
+            margin-left: 20px;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 2px solid #007bff;
+        }
+        .profile input[type="text"] {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .profile button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .profile button:hover {
+            background-color: #0056b3;
+        }
+        .view-orders {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Company Logo -->
+        <div class="logo">
+            <img src="https://www.creativefabrica.com/wp-content/uploads/2019/02/Online-shop-shopping-shop-logo-by-DEEMKA-STUDIO-3.jpg" alt="Company Logo">
+        </div>
+
+        <!-- Profile Section -->
+        <div class="profile">
+            <!-- Customer Photo -->
+            <div>
+                <img id="customer-photo" src="path-to-default-customer-photo.jpg" alt="Customer Photo">
+                <input type="file" id="upload-photo" accept="image/*">
+            </div>
+
+            <!-- Customer Information -->
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" value="Customer Name">
+                <button onclick="saveName()">Save</button>
+            </div>
+            
+            <div>
+                <label for="gmail">Gmail:</label>
+                <input type="text" id="gmail" value="customer@example.com" readonly>
+            </div>
+
+            <!-- View Orders Button -->
+            <div class="view-orders">
+                <button onclick="viewOrders()">View Orders</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle photo upload
+        document.getElementById('upload-photo').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Save the photo URL in local storage
+                    localStorage.setItem('customerPhoto', e.target.result);
+                    document.getElementById('customer-photo').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Function to save the name
+        function saveName() {
+            const name = document.getElementById('name').value;
+            localStorage.setItem('customerName', name);
+            alert('Name saved: ' + name);
+        }
+
+        // Function to view orders
+        function viewOrders() {
+            window.location.href = 'view-orders.html';         }
+
+        // Load saved photo and name on page load
+        window.onload = function() {
+            const savedPhoto = localStorage.getItem('customerPhoto');
+            const savedName = localStorage.getItem('customerName');
+            if (savedPhoto) {
+                document.getElementById('customer-photo').src = savedPhoto;
+            }
+            if (savedName) {
+                document.getElementById('name').value = savedName;
+            }
+        }
+    </script>
+</body>
+</html>
